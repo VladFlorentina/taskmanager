@@ -1,0 +1,22 @@
+version: 2.1
+
+jobs:
+  build-and-test:
+    docker:
+      - image: cimg/openjdk:21.0.11
+
+    steps:
+      - checkout
+
+      - run:
+          name: Check Java version
+          command: java -version
+
+      - run:
+          name: Run all Maven tests
+          command: mvn -B verify
+
+workflows:
+  taskmanager-ci:
+    jobs:
+      - build-and-test

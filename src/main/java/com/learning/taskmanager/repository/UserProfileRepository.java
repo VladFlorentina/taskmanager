@@ -1,0 +1,7 @@
+package com.learning.taskmanager.repository;
+
+import com.learning.taskmanager.entity.UserProfile;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface UserProfileRepository extends JpaRepository<UserProfile,Long> {
+}

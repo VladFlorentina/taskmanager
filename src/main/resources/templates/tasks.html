@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html lang="ro" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Task Manager</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<h1>My Task Manager</h1>
+
+<p th:text="${pageMessage}"></p>
+<p th:text="${companyName}"></p>
+
+<h2 th:text="#{task.list}">Lista taskurilor</h2>
+
+<h2 th:text="#{task.add}">Adaugă un task nou</h2>
+
+<form th:action="@{/tasks-view}" th:object="${newTask}" method="post">
+
+    <label for="title" th:text="#{task.title}">Titlu</label>
+    <input type="text" id="title" th:field="*{title}" required>
+
+    <br><br>
+
+    <label for="description" th:text="#{task.description}">
+        Descriere
+    </label>
+    <input type="text" id="description" th:field="*{description}">
+
+    <br><br>
+
+    <button type="submit" th:text="#{task.submit}">
+        Adaugă task
+    </button>
+
+</form>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th th:text="#{task.title}">Titlu</th>
+        <th th:text="#{task.description}">Descriere</th>
+        <th>Status</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="task : ${tasks}">
+        <td th:text="${task.id}"></td>
+        <td th:text="${task.title}"></td>
+        <td th:text="${task.description}"></td>
+        <td th:text="${task.status}"></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
